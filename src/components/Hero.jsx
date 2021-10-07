@@ -8,15 +8,17 @@ function Hero() {
   // const [renderResult, setRenderResult] = useState(false);
   const { num1, num2 } = num;
 
-  const calculator = (a = 0, b = 0, operator) => {
+  const getOperators = (a, b, operator) => {
     let arithmeticOperation;
-
     if (operator === '+') arithmeticOperation = a + b;
     if (operator === '-') arithmeticOperation = a - b;
     if (operator === '*') arithmeticOperation = a * b;
     if (operator === '/') arithmeticOperation = a / b;
+    return arithmeticOperation;
+  };
 
-    setResult(arithmeticOperation);
+  const calculator = (a = 0, b = 0, operator) => {
+    setResult(getOperators(a, b, operator));
   };
 
   const handleNumber = ({ target: { name, value } }) => {
