@@ -69,3 +69,20 @@
     background-color: black;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 760px) {
+    .calculator_main {
+        padding: 20px;
+    }
+    .Numbers  {
+    display: flex;
+    flex-direction: column;
+    }
+    .Numbers input {
+        margin-bottom: 5px;
+    }
+    .result {
+        height: 85px;
+        width: 340px;
+    }
+  }
