@@ -1,39 +1,51 @@
 import React, { useState } from 'react';
+import '../styles/calculadora.css';
 
 function Hero() {
-  const [num, setNum] = useState({ num1: 0, num2: 0 });
+  const [num, setNum] = useState({ num1: '', num2: '' });
   const [result, setResult] = useState(0);
+  const [operators, setOperators] = useState('');
   // const [renderResult, setRenderResult] = useState(false);
   const { num1, num2 } = num;
 
-  const sum = (a, operador, b) => {
-    const resultado = Number(a) + Number(b);
-    setResult(resultado);
+  const calculator = (a = 0, b = 0, operator) => {
+    let arithmeticOperation;
+
+    if (operator === '+') arithmeticOperation = a + b;
+    if (operator === '-') arithmeticOperation = a - b;
+    if (operator === '*') arithmeticOperation = a * b;
+    if (operator === '/') arithmeticOperation = a / b;
+
+    setResult(arithmeticOperation);
   };
 
-  const handleInput = ({ target: { value } }) => {
+  const handleNumber = ({ target: { name, value } }) => {
     setNum({
       ...num,
-      num1: value,
-      num2: value,
+      [name]: Number(value),
     });
   };
 
-  // const handleInput2 = ({ target: { value } }) => {
-  //   setNum({
-  //     ...num,
-  //     num2: value,
-  //   });
-  // };
-
   return (
-    <main className="calculator_main">
-      <p>{result}</p>
-      <input type="text" onChange={handleInput} value={num1} />
-      <input type="text" onChange={handleInput} value={num2} />
-      <button type="button" onClick={() => sum(num1, num2)}>resultado</button>
-      {/* <button type="button" onClick={() => setRenderResult(false)}>Limpar</button> */}
-    </main>
+    <div className="calculator_main">
+      <main>
+        <div className="result">{ !operators ? 'Adicione dois números e o operador aritmético' : result}</div>
+        <div className="Numbers">
+          <input placeholder="0" type="text" name="num1" onChange={handleNumber} value={num1} />
+          <input placeholder="0" type="text" name="num2" onChange={handleNumber} value={num2} />
+        </div>
+        <div className="operators">
+          <button onClick={() => setOperators('+')} type="button">+</button>
+          <button onClick={() => setOperators('-')} type="button">-</button>
+          <button onClick={() => setOperators('*')} type="button">*</button>
+          <button onClick={() => setOperators('+')} type="button">/</button>
+        </div>
+        <div className="btns">
+          <button type="button" onClick={() => calculator(num1, num2, operators)}>resultado</button>
+          <button type="button" onClick={() => setResult(0)}>Limpar</button>
+        </div>
+      </main>
+    </div>
   );
 }
 
