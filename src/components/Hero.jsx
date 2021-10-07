@@ -24,7 +24,7 @@ function Hero() {
   const handleNumber = ({ target: { name, value } }) => {
     setNum({
       ...num,
-      [name]: Number(value),
+      [name]: Number(value.replace(/[^A-z]*/g, '')),
     });
   };
 
