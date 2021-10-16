@@ -40,7 +40,7 @@ function Hero() {
           <button onClick={() => setOperators('+')} type="button">+</button>
           <button onClick={() => setOperators('-')} type="button">-</button>
           <button onClick={() => setOperators('*')} type="button">*</button>
-          <button onClick={() => setOperators('+')} type="button">/</button>
+          <button onClick={() => setOperators('/')} type="button">/</button>
         </div>
         <div className="btns">
           <button type="button" onClick={() => calculator(num1, num2, operators)}>resultado</button>
